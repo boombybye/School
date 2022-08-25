@@ -10,8 +10,16 @@ public class privateClassExample {
         hiddenNumber = (int) (Math.random()*11);
     }
 
+    public privateClassExample(int min, int max){
+        hiddenNumber = (int) (Math.random()*(max-min+1)+min);
+    }
+
     public int getHiddenNumber(){
         return hiddenNumber;
+    }
+
+    public void setHiddenNumber (int n){
+        hiddenNumber = n;
     }
 
     public boolean guessHiddenNumber(int g){
