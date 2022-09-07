@@ -1,12 +1,14 @@
 public class doubleLinkedList {
     public static void main(String[] args) {
     doubleLinkedList lList = new doubleLinkedList();
+        
     lList.add(5);
     lList.add(7);
     lList.add(6);
     lList.remove(7);
     lList.printItems();
     lList.printReverse();
+        
     }
 
     node head;
@@ -45,6 +47,7 @@ public class doubleLinkedList {
                     head = head.next;
                 }else{
                     last.next = current.next;
+                    current.next.prev = last;
                 }
                 System.out.println("found and removed the first instance of " + data);
                 return;

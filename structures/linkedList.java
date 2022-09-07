@@ -2,10 +2,11 @@ public class linkedList {
     public static void main(String[] args) {
     linkedList lList = new linkedList();
     lList.add(5);
-    lList.add(7);
     lList.add(6);
-    lList.remove(7);
+    lList.add(7);
+    //lList.remove(7);
     lList.printItems();
+    lList.printReverse();
     }
 
     node head;
@@ -51,5 +52,21 @@ public class linkedList {
             current = current.next;
         }
         System.out.println("could not remove " + data);
+    }
+
+    void printReverse(){
+        node current = head;
+        int idk = 0;
+        for(int i = 0;current!=null;i++){
+            current = current.next;
+            idk = i;
+        }
+        for(int i = idk;i>=0;i--){
+            current = head;
+            for(int j = i;j>=1;j--){
+                current = current.next;
+            }
+            System.out.println(current.data);
+        }
     }
 }
