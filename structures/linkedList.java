@@ -5,7 +5,7 @@ public class linkedList {
     lList.add(6);
     lList.add(7);
     //lList.remove(7);
-    lList.printItems();
+    //lList.printItems();
     lList.printReverse();
     }
 
