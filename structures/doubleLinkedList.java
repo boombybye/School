@@ -3,12 +3,14 @@ public class doubleLinkedList {
     doubleLinkedList lList = new doubleLinkedList();
         
     lList.add(5);
-    lList.add(7);
     lList.add(6);
-    lList.remove(7);
-    lList.printItems();
+    lList.add(7);
+    lList.add(8);
+    lList.add(9);
+    //lList.remove(7);
+    //lList.printItems();
     lList.printReverse();
-        
+    //System.out.println(lList.getAtIndex(2).data);
     }
 
     node head;
@@ -64,5 +66,20 @@ public class doubleLinkedList {
             System.out.println(current.data);
             current = current.prev;
         }
+    }
+
+    node getAtIndex(int index){
+        int i = 0;
+        node current = head;
+        while(i<index){
+            if (current == null){
+                return null;
+            }
+            else {
+                current = current.next;
+                i++;
+            }
+        }
+        return current;
     }
 }

@@ -4,9 +4,12 @@ public class linkedList {
     lList.add(5);
     lList.add(6);
     lList.add(7);
+    lList.add(8);
+    lList.add(9);
     //lList.remove(7);
     //lList.printItems();
     lList.printReverse();
+    //System.out.println(lList.getAtIndex(2).data);
     }
 
     node head;
@@ -56,17 +59,32 @@ public class linkedList {
 
     void printReverse(){
         node current = head;
-        int idk = 0;
+        int length = 0;
         for(int i = 0;current!=null;i++){
             current = current.next;
-            idk = i;
+            length = i;
         }
-        for(int i = idk;i>=0;i--){
+        for(int i = length;i>-1;i--){
             current = head;
-            for(int j = i;j>=1;j--){
+            for(int j = i;j>0;j--){
                 current = current.next;
             }
             System.out.println(current.data);
         }
+    }
+
+    node getAtIndex(int index){
+        int i = 0;
+        node current = head;
+        while(i<index){
+            if (current == null){
+                return null;
+            }
+            else {
+                current = current.next;
+                i++;
+            }
+        }
+        return current;
     }
 }
