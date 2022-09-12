@@ -82,4 +82,14 @@ public class doubleLinkedList {
         }
         return current;
     }
+    
+    int length() {
+        node current = head;
+        int l = -1;
+        while(current != null){
+            l++;
+            current = current.next;
+        }
+        return l;
+    }
 }
