@@ -1,7 +1,12 @@
 public class queue {
 
     public static void main(String[] args) {
-        
+        queue thing = new queue(2);
+        thing.push(3);
+        thing.push(4);
+        thing.push(5);
+        System.out.println(thing.pop());
+        System.out.println(thing.pop(2));
     }
 
     node head;
