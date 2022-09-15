@@ -1,18 +1,35 @@
 public class playingCard {
     
-    int value;
-    char type;
-    char suit;
-    boolean color;
-    boolean faceUp;
+    public int value;
+    public char type;
+    public char suit;
+    public boolean color;//true is red false is black
 
-    playingCard(int v, char t, char s, boolean c, boolean f){
+    playingCard(int v, char t, char s, boolean c){
         value = v;
         type = t;
         suit = s;
         color = c;
-        faceUp = f;
     }
 
+    playingCard(){
+
+    }
+
+    public void setValue(int v){
+        value = v;
+    }
+
+    public void setType(char t){
+        type = t;
+    }
+
+    public void setSuit(char s){
+        suit = s;
+    }
+
+    public void setColor(boolean c){
+        color = c;
+    }
 
 }

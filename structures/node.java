@@ -1,9 +1,9 @@
 public class node {
-    Object data;
+    playingCard data;
     node next;
     node prev;
 
-    node (Object d){
+    node (playingCard d){
         data = d;
     }
 }

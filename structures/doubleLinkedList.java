@@ -2,7 +2,7 @@ public class doubleLinkedList {
     public static void main(String[] args) {
     doubleLinkedList lList = new doubleLinkedList();
         
-    lList.add(5);
+    /*lList.add(5);
     lList.add(6);
     lList.add(7);
     lList.add(8);
@@ -10,10 +10,10 @@ public class doubleLinkedList {
     //lList.remove(7);
     //lList.printItems();
     lList.printReverse();
-    //System.out.println(lList.getAtIndex(2).data);
+    //System.out.println(lList.getAtIndex(2).data);*/
     }
 
-    node head;
+    public node head;
     node tail;
 
     doubleLinkedList(){
@@ -29,7 +29,7 @@ public class doubleLinkedList {
         }
     }
 
-    void add(Object data){
+    void add(playingCard data){
         if(tail==head && head.data == null){
             head.data = data;
         } else {
@@ -40,7 +40,7 @@ public class doubleLinkedList {
         }
     }
 
-    void remove(Object data){
+    void remove(playingCard data){
         node current = head;
         node last = head;
         while(current != null){
@@ -82,6 +82,8 @@ public class doubleLinkedList {
         }
         return current;
     }
+
+
     
     int length() {
         node current = head;
