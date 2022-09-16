@@ -4,16 +4,18 @@ public class playingCard {
     public char type;
     public char suit;
     public boolean color;//true is red false is black
+    public boolean faceUp;
 
     playingCard(int v, char t, char s, boolean c){
         value = v;
         type = t;
         suit = s;
         color = c;
+        faceUp = false;
     }
 
     playingCard(){
-
+        faceUp = false;
     }
 
     public void setValue(int v){

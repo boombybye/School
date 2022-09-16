@@ -14,7 +14,8 @@ public class doubleLinkedList {
     }
 
     public node head;
-    node tail;
+    public node current;
+    public node tail;
 
     doubleLinkedList(){
         head = new node(null);
@@ -29,6 +30,14 @@ public class doubleLinkedList {
         }
     }
 
+    void printTypeSuit(){
+        node current = head;
+        while(current != null){
+            System.out.println(current.data.suit+" "+current.data.type);
+            current = current.next;
+        }
+    }
+
     void add(playingCard data){
         if(tail==head && head.data == null){
             head.data = data;
@@ -39,6 +48,8 @@ public class doubleLinkedList {
             tail.prev = temp;
         }
     }
+
+
 
     void remove(playingCard data){
         node current = head;
@@ -83,7 +94,11 @@ public class doubleLinkedList {
         return current;
     }
 
-
+    playingCard cutAtIndex(int i){
+        playingCard card = getAtIndex(i).data;
+        remove(card);
+        return card;
+    }
     
     int length() {
         node current = head;
