@@ -2,8 +2,11 @@
 
 public class solitare {
     public static void main(String[] args) {
+
+
         doubleLinkedList deck = new doubleLinkedList();
         doubleLinkedList temp = new doubleLinkedList();
+        
         //Scanner sc = new Scanner(System.in);
         //initalized deck and cards
         for(int i = 0; i<4; i++){
@@ -32,6 +35,8 @@ public class solitare {
             temp.add(deck.cutAtIndex((int)(Math.random()*i)));
         }
         temp.printTypeSuit();
+
+
     }
 
 

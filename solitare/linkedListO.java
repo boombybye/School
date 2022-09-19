@@ -1,6 +1,8 @@
-public class linkedList {
+public class linkedListO {
+    //s is data
+    //true to differenciate between playingCard and stack
     public static void main(String[] args) {
-    linkedList lList = new linkedList();
+    /*linkedList lList = new linkedList();
     lList.add(5);
     lList.add(6);
     lList.add(7);
@@ -9,40 +11,41 @@ public class linkedList {
     //lList.remove(7);
     //lList.printItems();
     lList.printReverse();
-    //System.out.println(lList.getAtIndex(2).data);
+    //System.out.println(lList.getAtIndex(2).data);*/
     }
 
     node head;
 
-    linkedList(){
-        head = new node(null);
+
+    linkedListO(){
+        head = new node(null, true);
     }
     
     void printItems(){
         node current = head;
         while(current != null){
-            System.out.println(current.data);
+            System.out.println(current.s);
             current = current.next;
         }
     }
 
-    void add(Object data){
+    void add(stack data){
         node current = head;
         while(current.next != null){
             current = current.next;
         }
-        if(current.data == null){
-            current.data = data;
+        if(current.s == null){
+            current.s = data;
         }else{
-            current.next = new node(data);
+            current.next = new node(data, true);
         }
     }
 
-    void remove(Object data){
+    void remove(stack data){
         node current = head;
         node last = head;
         while(current != null){
-            if (current.data == data){
+            if (current.s == data){
                 if(current == head){
                     head = head.next;
                 }else{
@@ -69,7 +72,7 @@ public class linkedList {
             for(int j = i;j>0;j--){
                 current = current.next;
             }
-            System.out.println(current.data);
+            System.out.println(current.s);
         }
     }
 
@@ -98,3 +101,4 @@ public class linkedList {
         return l;
     }
 }
+
