@@ -29,6 +29,13 @@ public class stack {
         return temp.data;
     }
 
+    playingCard peak(){
+        if(head!=null && head.data!=null){
+            return head.data;
+        }
+        return null;
+    }
+
     //proceeding method is everkill for a stack
     playingCard pop(int n){
         Object temp = head;
