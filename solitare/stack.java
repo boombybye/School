@@ -36,6 +36,35 @@ public class stack {
         return null;
     }
 
+    playingCard peak(int i){
+        node current = head;
+        if(current == null || current.data == null){
+            return null;
+        }
+        for(int j = i;i>0;i--){
+            if (current.next!=null || current.next.data!=null){
+                current = current.next;
+            }
+        }
+        if(current!=null && current.data!=null){
+            return head.data;
+        }
+        return null;
+    }
+
+    int size(){
+        node current = head;
+        boolean exit = false;
+        int length = 0;
+        while(!exit){
+            if (current.next!=null && current.next.data!=null){
+                current = current.next;
+                length++;
+            } else {exit = true;}
+        }
+            return length;
+    }
+
     //proceeding method is everkill for a stack
     playingCard pop(int n){
         Object temp = head;

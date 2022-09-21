@@ -34,4 +34,12 @@ public class playingCard {
         color = c;
     }
 
+    public String getSuitValue(){
+        if(faceUp){
+            return suit + " " + value;
+        } else {
+            return "///";
+        }
+    }
+
 }

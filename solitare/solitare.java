@@ -40,7 +40,7 @@ public class solitare {
             newDeck.push(deck.cutAtIndex((int)(Math.random()*i)));//shuffle and put all cards into stack named temp
         }
         for(int i = 0; i<4; i++){
-            piles.add(new stack(null));//create ace piles-index 0-3
+            piles.add(new stack(new playingCard()));//create ace piles-index 0-3
         }
         piles.add(newDeck);//add deck to piles index 4
         for(int i = 0; i<8; i++){
@@ -60,10 +60,22 @@ public class solitare {
 
         try{
             boolean won = false;
+            int biggest = 0;
             while(!won){
+                
                 System.out.println("");
             System.out.println("  ___   ___   ___   ___   ___   ___  ");
-            System.out.println(" |///| |"+"suit value"+"| |"/*keep going for rest of row*/);
+           
+                System.out.println("  |///| |" + piles.getAtIndex(5).s.peak().getSuitValue() + "| |" + piles.getAtIndex(0).s.peak().getSuitValue() + "| |" + piles.getAtIndex(1).s.peak().getSuitValue() + "| |" + piles.getAtIndex(2).s.peak().getSuitValue() + "| |" + piles.getAtIndex(3).s.peak().getSuitValue() + "| ");
+            
+            for(int i = 6;i<=12;i++){
+                if(biggest<piles.getAtIndex(i).s.size()){
+                    biggest = piles.getAtIndex(i).s.size();
+                }
+            }
+
+            
+            //System.out.println(" |///| |"+piles.getAtIndex(5).s.peak().getSuitValue()+"| |"/*keep going for rest of row*/);
             }
 
             scan.close();
