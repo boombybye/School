@@ -79,7 +79,7 @@ public class linkedListO {
     node getAtIndex(int index){
         int i = 0;
         node current = head;
-        while(i<index){
+        while(i<index-1){
             if (current == null){
                 return null;
             }

@@ -15,6 +15,10 @@ public class stack {
         head = new node (data);
     }
 
+    stack(){
+        head = null;
+    }
+
     void push(playingCard data){
         node temp = new node(data);
         temp.next = head;

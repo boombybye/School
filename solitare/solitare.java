@@ -38,18 +38,21 @@ public class solitare {
         //shuffle
         for(int i = 51; i>=0;i--){
             newDeck.push(deck.cutAtIndex((int)(Math.random()*i)));//shuffle and put all cards into stack named temp
+            System.out.println(newDeck.peak().suit+" "+newDeck.peak().type);
         }
         for(int i = 0; i<4; i++){
             piles.add(new stack(new playingCard()));//create ace piles-index 0-3
         }
         piles.add(newDeck);//add deck to piles index 4
+        //System.out.println(piles.getAtIndex(5).s.peak().type); all indexes are +1(maybe). anyways need to test and change
         for(int i = 0; i<8; i++){
-            piles.add(new stack(null));//create turned up card pile index 5 and playing field piles index 6-12 increases with starting num cards in each pile
+            piles.add(new stack());//create turned up card pile index 5 and playing field piles index 6-12 increases with starting num cards in each pile
         }
         //temp.printTypeSuit();
 
         for(int i = 0; i<7; i++){//deals out cards
             for(int j = 0; j<i; i++){
+                System.out.println(piles.getAtIndex(4).s.peak().type);
                 piles.getAtIndex(i+6).s.push(piles.getAtIndex(4).s.pop());
             }
             piles.getAtIndex(4).s.peak().faceUp = true;
