@@ -34,9 +34,9 @@ public class playingCard {
         color = c;
     }
 
-    public String getSuitValue(){
+    public String getSuitType(){
         if(faceUp){
-            return suit + " " + value;
+            return suit + " " + type;
         } else {
             return "///";
         }

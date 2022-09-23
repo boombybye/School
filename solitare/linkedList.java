@@ -18,7 +18,7 @@ public class linkedList {
 
 
     linkedList(){
-        head = new node(null, true);
+        head = new node(null, 1);
     }
     
     void printItems(){
@@ -29,15 +29,15 @@ public class linkedList {
         }
     }
 
-    void add(stack data){
+    void add(Object data){
         node current = head;
         while(current.next != null){
             current = current.next;
         }
-        if(current.s == null){
-            current.s = data;
+        if(current.o == null){
+            current.o = data;
         }else{
-            current.next = new node(data, true);
+            current.next = new node(data, 1);
         }
     }
 
@@ -45,7 +45,7 @@ public class linkedList {
         node current = head;
         node last = head;
         while(current != null){
-            if (current.s == data){
+            if (current.o == data){
                 if(current == head){
                     head = head.next;
                 }else{
@@ -72,7 +72,7 @@ public class linkedList {
             for(int j = i;j>0;j--){
                 current = current.next;
             }
-            System.out.println(current.s);
+            System.out.println(current.o);
         }
     }
 

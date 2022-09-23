@@ -56,8 +56,11 @@ public class stack {
         return null;
     }
 
-    int size(){
+    public int size(){
         node current = head;
+        if(current==null || current.data==null){
+            return -1;
+        }
         boolean exit = false;
         int length = 0;
         while(!exit){
