@@ -45,13 +45,13 @@ public class stack {
         if(current == null || current.data == null){
             return null;
         }
-        for(int j = i;i>0;i--){
+        for(int j = i;j>0;j--){
             if (current.next!=null || current.next.data!=null){
                 current = current.next;
             }
         }
-        if(current!=null && current.data!=null){
-            return head.data;
+        if(current!=null){
+            return current.data;
         }
         return null;
     }

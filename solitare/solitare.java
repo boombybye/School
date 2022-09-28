@@ -55,8 +55,8 @@ public class solitare {
         }
         piles.getAtIndex(4).s.peak().faceUp = true;
         piles.getAtIndex(5).s.push(piles.getAtIndex(4).s.pop());
-        linkedList pileSizes;
-        linkedList tempSizes;
+        linkedList pileSizes;//not important could delete with its manipulation
+        linkedList tempSizes;//not important could delete with its manipulation
 
         try{
             boolean won = false;
@@ -75,9 +75,7 @@ public class solitare {
             
                 System.out.println("  ▔▔▔   ▔▔▔   ▔▔▔   ▔▔▔   ▔▔▔   ▔▔▔  ");
 
-                System.out.println("-------------------------------------");
-
-                System.out.println("  ___   ___   ___   ___   ___   ___   ___  ");
+                System.out.println("-------------------------------------------");
 
                 
 
@@ -85,6 +83,28 @@ public class solitare {
                 if(biggest<piles.getAtIndex(i).s.size()){
                     biggest = piles.getAtIndex(i).s.size();
                 }
+            }
+            String printing1 = "";
+            String printing2 = "";
+            String printing3 = "";
+            for(int i = 0;i<=biggest;i++){
+                printing1 = " ";
+                printing2 = " ";
+                printing3 = " ";
+                for(int j = 6;j<=12;j++){
+                    if(piles.getAtIndex(j).s.size()-i>0){
+                        printing1 = printing1 + " ___  ";
+                        printing2 = printing2 + "|" + piles.getAtIndex(j).s.peak((piles.getAtIndex(j).s.size())-i).getSuitType() + "| ";
+                        printing3 = printing3 + " ▔▔▔  ";
+                    }else{
+                        printing1 = printing1 + "      ";
+                        printing2 = printing2 + "      ";
+                        printing3 = printing3 + "      ";
+                    }
+                }
+                System.out.println(printing1);
+                System.out.println(printing2);
+                System.out.println(printing3);
             }
 
             won = true;
