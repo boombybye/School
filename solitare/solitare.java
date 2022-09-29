@@ -45,13 +45,15 @@ public class solitare {
         //temp.printTypeSuit();
 
         for(int i = 0; i<7; i++){//deals out cards
-            for(int j = 0; j<i+1; j++){
+            for(int j = 0; j<i; j++){
                 //System.out.println(piles.getAtIndex(4).s.peak().type);
                 //System.out.println("stack "+(i+6));
                 piles.getAtIndex(i+6).s.push(piles.getAtIndex(4).s.pop());
             }
-            piles.getAtIndex(4).s.peak().faceUp = true;
+            //piles.getAtIndex(4).s.peak().faceUp = true;
             piles.getAtIndex(i+6).s.push(piles.getAtIndex(4).s.pop());
+            piles.getAtIndex(i+6).s.peak().faceUp = true;
+            //System.out.println(piles.getAtIndex(i+6).s.peak().faceUp);
         }
         piles.getAtIndex(4).s.peak().faceUp = true;
         piles.getAtIndex(5).s.push(piles.getAtIndex(4).s.pop());
@@ -79,7 +81,7 @@ public class solitare {
 
                 
 
-            for(int i = 6;i<=12;i++){
+            for(int i = 6;i<=12;i++){//gets size of biggest pile
                 if(biggest<piles.getAtIndex(i).s.size()){
                     biggest = piles.getAtIndex(i).s.size();
                 }
@@ -92,7 +94,7 @@ public class solitare {
                 printing2 = " ";
                 printing3 = " ";
                 for(int j = 6;j<=12;j++){
-                    if(piles.getAtIndex(j).s.size()-i>0){
+                    if(piles.getAtIndex(j).s.size()-i+1>0){
                         printing1 = printing1 + " ___  ";
                         printing2 = printing2 + "|" + piles.getAtIndex(j).s.peak((piles.getAtIndex(j).s.size())-i).getSuitType() + "| ";
                         printing3 = printing3 + " ▔▔▔  ";

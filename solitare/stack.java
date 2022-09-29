@@ -16,7 +16,7 @@ public class stack {
     }
 
     stack(){
-        head = null;
+        //head = null;
     }
 
     void push(playingCard data){
