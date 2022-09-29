@@ -6,7 +6,13 @@ public class solitare {
         linkedListO piles = new linkedListO();
         doubleLinkedList deck = new doubleLinkedList();
         stack newDeck = new stack(null);
+        stack interum = new stack();
         Scanner scan = new Scanner(System.in);
+
+        int origin;
+        int amount;
+        int destination;
+        int numFaceUp = 0;
 
         //initalized deck and cards
         for(int i = 0; i<4; i++){
@@ -37,6 +43,8 @@ public class solitare {
         }
         for(int i = 0; i<4; i++){
             piles.add(new stack(new playingCard()));//create ace piles-index 0-3
+            piles.getAtIndex(i).s.peak().value = 0;
+            piles.getAtIndex(i).s.peak().faceUp = false;
         }
         piles.add(newDeck);//add deck to piles index 4
         for(int i = 0; i<8; i++){
@@ -57,19 +65,19 @@ public class solitare {
         }
         piles.getAtIndex(4).s.peak().faceUp = true;
         piles.getAtIndex(5).s.push(piles.getAtIndex(4).s.pop());
-        linkedList pileSizes;//not important could delete with its manipulation
-        linkedList tempSizes;//not important could delete with its manipulation
+        //linkedList pileSizes;//not important could delete with its manipulation
+        //linkedList tempSizes;//not important could delete with its manipulation
 
         try{
             boolean won = false;
             int biggest = 0;
             while(!won){
-                pileSizes = new linkedList();
+                /*pileSizes = new linkedList();
                 for(int k = 6; k<13; k++){
                     pileSizes.add(piles.getAtIndex(k).s.size());
                 }
                 tempSizes = pileSizes;
-                
+                */
                 System.out.println("");
                 System.out.println("  ___   ___   ___   ___   ___   ___  ");
            
@@ -109,6 +117,39 @@ public class solitare {
                 System.out.println(printing3);
             }
 
+
+
+            System.out.println("Input pile of card(s) you wish to move(0-3 for ace piles, 4 to draw a card, 5 for drawn cards, 6-12 for piles in playing area):");
+            origin = scan.nextInt();
+            if(origin>=0&&origin<=12){
+                if(origin>=0&&origin<=5){
+                    amount = 1;
+                    if(piles.getAtIndex(origin).s.size()<=0){
+                        System.out.println("input is an empty pile");
+                        origin = -1;
+                    }
+                }else{
+                    System.out.println("Input amount of cards to move(max is as many as there are facup in selected coulum):");
+                    amount = scan.nextInt();
+                    for(int i = 0;i<piles.getAtIndex(origin).s.size();i++){
+                        if(piles.getAtIndex(origin).s.peak(i).faceUp){
+                            numFaceUp++;
+                        } else {break;}
+                    }
+                    if(numFaceUp>amount){
+                        System.out.println("amount is more than the number of faceup cards in this pile");
+                        origin = -1;
+                    }
+                }
+                //proceed from here
+            } else {
+                System.out.println("input is not a valid pile");
+            }
+            
+
+            if(piles.getAtIndex(0).s.size()==13&&piles.getAtIndex(1).s.size()==13&&piles.getAtIndex(2).s.size()==13&&piles.getAtIndex(3).s.size()==13){
+                won = true;
+            }
             won = true;
             }
 
@@ -120,5 +161,7 @@ public class solitare {
 
 
     }
-
+    /*public static void moveTo(int origin){
+        if(true){}
+    }*/
 }
