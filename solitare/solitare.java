@@ -9,9 +9,9 @@ public class solitare {
         stack interum = new stack();
         Scanner scan = new Scanner(System.in);
 
-        int origin;
-        int amount;
-        int destination;
+        int origin = -1;
+        int amount = -1;
+        int destination = -1;
         int numFaceUp = 0;
 
         //initalized deck and cards
@@ -124,13 +124,14 @@ public class solitare {
             if(origin>=0&&origin<=12){
                 if(origin>=0&&origin<=5){
                     amount = 1;
-                    if(piles.getAtIndex(origin).s.size()<=0){
+                    if(piles.getAtIndex(origin).s.size()<=0||(piles.getAtIndex(origin).s.size()<0&&origin>=4)){
                         System.out.println("input is an empty pile");
                         origin = -1;
                     }
                 }else{
                     System.out.println("Input amount of cards to move(max is as many as there are facup in selected coulum):");
                     amount = scan.nextInt();
+                    numFaceUp = 0;
                     for(int i = 0;i<piles.getAtIndex(origin).s.size();i++){
                         if(piles.getAtIndex(origin).s.peak(i).faceUp){
                             numFaceUp++;
@@ -141,16 +142,39 @@ public class solitare {
                         origin = -1;
                     }
                 }
+                if(origin!=-1){
+                    System.out.println("Input destination of the card(s)(0-3 for ace piles, 4 is unavalable, 5 to draw a card, 6-12 for piles in playing area)");
+                    destination = scan.nextInt();
+                } else if(destination!=4&&destination>=0&&destination<=12){//this bit not working->fix!!!
+                    if(piles.getAtIndex(destination).s.peak().value-piles.getAtIndex(origin).s.peak().value==1&&piles.getAtIndex(destination).s.peak().color!=piles.getAtIndex(origin).s.peak().color){
+                        for(int i = 0;i<amount;i++){
+                            interum.push(piles.getAtIndex(origin).s.pop());
+                        }
+                        for(int i = 0;i<amount;i++){
+                            piles.getAtIndex(destination).s.push(interum.pop());
+                        }
+                        if(destination==5){
+                            piles.getAtIndex(5).s.peak().faceUp = true;
+                        }
+                    }else{System.out.println("not valid movement");}
+                }
                 //proceed from here
             } else {
                 System.out.println("input is not a valid pile");
             }
+
+            for(int i = 0; i<=12; i++){
+                if(piles.getAtIndex(i).s.peak().faceUp!=true && i>4){
+                    piles.getAtIndex(i).s.peak().faceUp = true;
+                }
+            }
             
 
             if(piles.getAtIndex(0).s.size()==13&&piles.getAtIndex(1).s.size()==13&&piles.getAtIndex(2).s.size()==13&&piles.getAtIndex(3).s.size()==13){
+                System.out.println("congratualtions, you win!");
                 won = true;
             }
-            won = true;
+            //won = true;
             }
 
             scan.close();
