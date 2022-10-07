@@ -38,7 +38,7 @@ public class solitare {
         deck.printTypeSuit();
         //shuffle
         for(int i = 51; i>=0;i--){
-            newDeck.push(deck.cutAtIndex((int)(Math.random()*i)));//shuffle and put all cards into stack named temp
+            newDeck.push(deck.cutAtIndex((int)(Math.random()*(i))));//shuffle and put all cards into stack named temp
             System.out.println(newDeck.peak().suit+" "+newDeck.peak().type);
         }
         for(int i = 0; i<4; i++){
@@ -63,8 +63,9 @@ public class solitare {
             piles.getAtIndex(i+6).s.peak().faceUp = true;
             //System.out.println(piles.getAtIndex(i+6).s.peak().faceUp);
         }
-        piles.getAtIndex(4).s.peak().faceUp = true;
+        
         piles.getAtIndex(5).s.push(piles.getAtIndex(4).s.pop());
+        piles.getAtIndex(5).s.peak().faceUp = true;
         //linkedList pileSizes;//not important could delete with its manipulation
         //linkedList tempSizes;//not important could delete with its manipulation
 
@@ -124,7 +125,7 @@ public class solitare {
             if(origin>=0&&origin<=12){
                 if(origin>=0&&origin<=5){
                     amount = 1;
-                    if(piles.getAtIndex(origin).s.size()<=0||(piles.getAtIndex(origin).s.size()<0&&origin>=4)){
+                    if((piles.getAtIndex(origin).s.size()<=0&&origin<=3)||(piles.getAtIndex(origin).s.size()<0&&origin>=4)){
                         System.out.println("input is an empty pile");
                         origin = -1;
                     }
@@ -143,10 +144,10 @@ public class solitare {
                     }
                 }
                 if(origin!=-1){
-                    System.out.println("Input destination of the card(s)(0-3 for ace piles, 4 is unavalable, 5 to draw a card, 6-12 for piles in playing area)");
+                    System.out.println("Input destination of the card(s)(0-3 for ace piles, 4 is unavalable, 5 to continue drawing a card, 6-12 for piles in playing area)");
                     destination = scan.nextInt();
-                } else if(destination!=4&&destination>=0&&destination<=12){//this bit not working->fix!!!
-                    if(piles.getAtIndex(destination).s.peak().value-piles.getAtIndex(origin).s.peak().value==1&&piles.getAtIndex(destination).s.peak().color!=piles.getAtIndex(origin).s.peak().color){
+                if(destination!=4&&destination>=0&&destination<=12){//this bit not working->fix!!! maybe it is now -> ace movement is not programmed/working yet
+                    if((destination>5&&piles.getAtIndex(destination).s.peak().value-piles.getAtIndex(origin).s.peak(amount-1).value==1&&piles.getAtIndex(destination).s.peak().color!=piles.getAtIndex(origin).s.peak(amount-1).color)||(destination<=3&&piles.getAtIndex(destination).s.peak().value+1==piles.getAtIndex(origin).s.peak().value&&piles.getAtIndex(destination).s.peak().suit==piles.getAtIndex(origin).s.peak().suit)){
                         for(int i = 0;i<amount;i++){
                             interum.push(piles.getAtIndex(origin).s.pop());
                         }
@@ -157,6 +158,7 @@ public class solitare {
                             piles.getAtIndex(5).s.peak().faceUp = true;
                         }
                     }else{System.out.println("not valid movement");}
+                }
                 }
                 //proceed from here
             } else {
