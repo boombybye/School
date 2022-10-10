@@ -26,6 +26,7 @@ public class solitare {
                     case 3: deck.tail.data.color = false;deck.tail.data.suit = '♣';break;
                 }
                 switch(j){
+                    case 0: deck.tail.data.type = '1';deck.tail.data.value = 1;break;
                     case 9: deck.tail.data.type = '⒑';deck.tail.data.value = 10;break;
                     case 10: deck.tail.data.type = 'J';deck.tail.data.value = 11;break;
                     case 11: deck.tail.data.type = 'Q';deck.tail.data.value = 12;break;
@@ -147,6 +148,7 @@ public class solitare {
                     System.out.println("Input destination of the card(s)(0-3 for ace piles, 4 is unavalable, 5 to continue drawing a card, 6-12 for piles in playing area)");
                     destination = scan.nextInt();
                 if(destination!=4&&destination>=0&&destination<=12){//this bit not working->fix!!! maybe it is now -> ace movement is not programmed/working yet
+                    System.out.println("here it is " + piles.getAtIndex(origin).s.peak().value+" "+piles.getAtIndex(destination).s.peak().value);
                     if((destination>5&&piles.getAtIndex(destination).s.peak().value-piles.getAtIndex(origin).s.peak(amount-1).value==1&&piles.getAtIndex(destination).s.peak().color!=piles.getAtIndex(origin).s.peak(amount-1).color)||(destination<=3&&piles.getAtIndex(destination).s.peak().value+1==piles.getAtIndex(origin).s.peak().value&&piles.getAtIndex(destination).s.peak().suit==piles.getAtIndex(origin).s.peak().suit)){
                         for(int i = 0;i<amount;i++){
                             interum.push(piles.getAtIndex(origin).s.pop());
@@ -154,9 +156,11 @@ public class solitare {
                         for(int i = 0;i<amount;i++){
                             piles.getAtIndex(destination).s.push(interum.pop());
                         }
-                        if(destination==5){
-                            piles.getAtIndex(5).s.peak().faceUp = true;
-                        }
+                    }else if(origin==4&&destination==5){
+                        piles.getAtIndex(5).s.push(piles.getAtIndex(4).s.pop());
+                        piles.getAtIndex(5).s.peak().faceUp = true;
+                    }else if(destination<4&&amount==1&&piles.getAtIndex(origin).s.peak().value-piles.getAtIndex(destination).s.peak().value==1){
+                        piles.getAtIndex(destination).s.push(piles.getAtIndex(5).s.pop());
                     }else{System.out.println("not valid movement");}
                 }
                 }
@@ -165,12 +169,23 @@ public class solitare {
                 System.out.println("input is not a valid pile");
             }
 
-            for(int i = 0; i<=12; i++){
-                if(piles.getAtIndex(i).s.peak().faceUp!=true && i>4){
+            for(int i = 6; i<=12; i++){//also add a reshuffle
+                if(piles.getAtIndex(i).s.peak().faceUp!=true){
                     piles.getAtIndex(i).s.peak().faceUp = true;
                 }
             }
             
+            if(piles.getAtIndex(4).s.size()==-1){
+                for(int i = piles.getAtIndex(5).s.size();i>1;i--){//may be wrong i>value
+                    piles.getAtIndex(4).s.push(piles.getAtIndex(5).s.pop());
+                    piles.getAtIndex(4).s.peak().faceUp = false;
+                }
+            }
+
+            if(piles.getAtIndex(5).s.peak()==null){
+                piles.getAtIndex(5).s.push(piles.getAtIndex(4).s.pop());
+                piles.getAtIndex(5).s.peak().faceUp = true;
+            }
 
             if(piles.getAtIndex(0).s.size()==13&&piles.getAtIndex(1).s.size()==13&&piles.getAtIndex(2).s.size()==13&&piles.getAtIndex(3).s.size()==13){
                 System.out.println("congratualtions, you win!");
