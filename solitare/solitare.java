@@ -159,7 +159,7 @@ public class solitare {
                     }else if(origin==4&&destination==5){
                         piles.getAtIndex(5).s.push(piles.getAtIndex(4).s.pop());
                         piles.getAtIndex(5).s.peak().faceUp = true;
-                    }else if(destination<4&&amount==1&&piles.getAtIndex(origin).s.peak().value-piles.getAtIndex(destination).s.peak().value==1){
+                    }else if(destination<4&&amount==1&&(piles.getAtIndex(origin).s.peak().value-piles.getAtIndex(destination).s.peak().value==1||piles.getAtIndex(origin).s.peak().type=='1')){//not working after first ace
                         piles.getAtIndex(destination).s.push(piles.getAtIndex(5).s.pop());
                     }else{System.out.println("not valid movement");}
                 }
