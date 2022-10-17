@@ -148,8 +148,15 @@ public class solitare {
                     System.out.println("Input destination of the card(s)(0-3 for ace piles, 4 is unavalable, 5 to continue drawing a card, 6-12 for piles in playing area)");
                     destination = scan.nextInt();
                 if(destination!=4&&destination>=0&&destination<=12){//this bit not working->fix!!! maybe it is now -> ace movement is not programmed/working yet
-                    System.out.println("here it is " + piles.getAtIndex(origin).s.peak().value+" "+piles.getAtIndex(destination).s.peak().value);
-                    if((destination>5&&piles.getAtIndex(destination).s.peak().value-piles.getAtIndex(origin).s.peak(amount-1).value==1&&piles.getAtIndex(destination).s.peak().color!=piles.getAtIndex(origin).s.peak(amount-1).color)||(destination<=3&&piles.getAtIndex(destination).s.peak().value+1==piles.getAtIndex(origin).s.peak().value&&piles.getAtIndex(destination).s.peak().suit==piles.getAtIndex(origin).s.peak().suit)){
+                    //System.out.println("here it is " + piles.getAtIndex(origin).s.peak().value+" "+piles.getAtIndex(destination).s.peak().value);
+                    if(piles.getAtIndex(destination).s.size()<0){
+                        for(int i = 0;i<amount;i++){
+                            interum.push(piles.getAtIndex(origin).s.pop());
+                        }
+                        for(int i = 0;i<amount;i++){
+                            piles.getAtIndex(destination).s.push(interum.pop());
+                        }
+                    }else if((destination>5&&piles.getAtIndex(destination).s.peak().value-piles.getAtIndex(origin).s.peak(amount-1).value==1&&piles.getAtIndex(destination).s.peak().color!=piles.getAtIndex(origin).s.peak(amount-1).color)||(destination<=3&&piles.getAtIndex(destination).s.peak().value+1==piles.getAtIndex(origin).s.peak().value&&piles.getAtIndex(destination).s.peak().suit==piles.getAtIndex(origin).s.peak().suit)){
                         for(int i = 0;i<amount;i++){
                             interum.push(piles.getAtIndex(origin).s.pop());
                         }
@@ -159,8 +166,8 @@ public class solitare {
                     }else if(origin==4&&destination==5){
                         piles.getAtIndex(5).s.push(piles.getAtIndex(4).s.pop());
                         piles.getAtIndex(5).s.peak().faceUp = true;
-                    }else if(destination<4&&amount==1&&(piles.getAtIndex(origin).s.peak().value-piles.getAtIndex(destination).s.peak().value==1||piles.getAtIndex(origin).s.peak().type=='1')){//not working after first ace
-                        piles.getAtIndex(destination).s.push(piles.getAtIndex(5).s.pop());
+                    }else if(destination<4&&amount==1&&(piles.getAtIndex(origin).s.peak().value-piles.getAtIndex(destination).s.peak().value==1||piles.getAtIndex(origin).s.peak().type=='1'||(piles.getAtIndex(origin).s.peak().type=='2'&&piles.getAtIndex(destination).s.peak().type=='1'))){//not working after first ace
+                        piles.getAtIndex(destination).s.push(piles.getAtIndex(origin).s.pop());
                     }else{System.out.println("not valid movement");}
                 }
                 }
@@ -170,12 +177,14 @@ public class solitare {
             }
 
             for(int i = 6; i<=12; i++){//also add a reshuffle
-                if(piles.getAtIndex(i).s.peak().faceUp!=true){
-                    piles.getAtIndex(i).s.peak().faceUp = true;
-                }
+                if(piles.getAtIndex(i).s.peak()!=null){
+                    if(piles.getAtIndex(i).s.peak().faceUp!=true){
+                        piles.getAtIndex(i).s.peak().faceUp = true;
+                    }
+                }   
             }
             
-            if(piles.getAtIndex(4).s.size()==-1){
+            if(piles.getAtIndex(4).s.size()==-1){//reshuufle->works sometimes
                 for(int i = piles.getAtIndex(5).s.size();i>1;i--){//may be wrong i>value
                     piles.getAtIndex(4).s.push(piles.getAtIndex(5).s.pop());
                     piles.getAtIndex(4).s.peak().faceUp = false;
