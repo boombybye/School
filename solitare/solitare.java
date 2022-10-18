@@ -139,7 +139,7 @@ public class solitare {
                             numFaceUp++;
                         } else {break;}
                     }
-                    if(numFaceUp>amount){
+                    if(numFaceUp<amount&&!(origin>5&&piles.getAtIndex(origin).s.size()==0)){
                         System.out.println("amount is more than the number of faceup cards in this pile");
                         origin = -1;
                     }
