@@ -12,4 +12,5 @@ public class TreeNode{
     public TreeNode(int d){
         data = d;
     }
+
 }

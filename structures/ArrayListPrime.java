@@ -165,7 +165,9 @@ class ArrayListPrime<T> {
     }
 
     public void clear(){
-        array = new T[10];
+        for(int i = 0; i<array.length; i++){
+            array[i] = null;
+        }
     }
 
     public ArrayListPrime<T> clone(){
