@@ -20,8 +20,8 @@ public class tree {//doTheThings is setting all the nodes to the same numbers fo
         myTree.aString(myTree.root);
         System.out.println();
         System.out.println();
-        myTree.root = myTree.doTheThings(myTree.root);
-        myTree.aString(myTree.root);
+        //myTree.root = myTree.doTheThings(myTree.root);
+        //myTree.aString(myTree.root);
     }
 
     public tree(TreeNode seed){
@@ -57,7 +57,7 @@ public class tree {//doTheThings is setting all the nodes to the same numbers fo
         TreeNode temp1 = stuff;
         TreeNode temp2;
         if(stuff.right != null || stuff.left!= null){}
-        if(thing(stuff.right)>thing(stuff.left)+1){
+        if(thing(stuff.right)>thing(stuff.left)+1||(stuff.left==null&&thing(stuff.right)>0)){
             stuff = stuff.right;
             temp2 = stuff.left;
             stuff.left = temp1;
